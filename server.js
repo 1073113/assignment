@@ -56,6 +56,11 @@ app.use(hpp());
 // Enable cors
 app.use(cors());
 
+//default route
+app.get("/", (req, res) => {
+  res.send("API is running with https//domain/api/");
+});
+
 // Routes
 app.use("/api", versionRoutes);
 app.use("/api/values", valuesRoutes);
