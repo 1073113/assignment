@@ -39,9 +39,13 @@ const createOrUpdate = asyncHandler(async (request, response) => {
 
       await valueService.create(assignment);
 
+      const parsedValue = isJSON(data.value)
+        ? JSON.parse(data.value)
+        : data.value;
+
       const payload = {
         key: data.key,
-        value: data.value,
+        value: parsedValue,
         timeStamp: formatToTimeStamp(data.timestamp),
         time: formatToLocalTime(data.timestamp),
       };
@@ -66,9 +70,13 @@ const createOrUpdate = asyncHandler(async (request, response) => {
 
       await valueService.create(data);
 
+      const parsedValue = isJSON(data.value)
+        ? JSON.parse(data.value)
+        : data.value;
+
       const payload = {
         key: data.key,
-        value: data.value,
+        value: parsedValue,
         timeStamp: formatToTimeStamp(data.timestamp),
         time: formatToLocalTime(data.timestamp),
       };
@@ -94,7 +102,11 @@ const findOneByKey = asyncHandler(async (request, response) => {
     const assignment = await valueService.findByKeyAndTimeStamp(key, isoDate);
 
     if (assignment) {
-      return response.json({ value: assignment.value });
+      const parsedValue = isJSON(assignment.value)
+        ? JSON.parse(assignment.value)
+        : assignment.value;
+
+      return response.json({ value: parsedValue });
     } else {
       throw new ErrorHandler(404, "Assignment not Found");
     }
@@ -102,7 +114,11 @@ const findOneByKey = asyncHandler(async (request, response) => {
     const assignment = await assignmentServices.findByKey(key);
 
     if (assignment) {
-      return response.json({ value: assignment.value });
+      const parsedValue = isJSON(assignment.value)
+        ? JSON.parse(assignment.value)
+        : assignment.value;
+
+      return response.json({ value: parsedValue });
     } else {
       throw new ErrorHandler(404, "Assignment not Found");
     }
