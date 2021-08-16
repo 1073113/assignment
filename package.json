@@ -1,0 +1,23 @@
+{
+  "name": "version-control",
+  "version": "1.0.0",
+  "description": "Build a version controlled key-value store with a HTTP API we can query that from.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server"
+  },
+  "author": "David Ho",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "express-rate-limit": "^5.3.0",
+    "mongoose": "^5.13.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
